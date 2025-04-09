@@ -61,7 +61,7 @@ struct CounterView: View {
 }
 
 #Preview {
-    CounterView(store: .init(initialState: CounterFeature.State()) {
-        CounterFeature()
+    CounterView(store: .init(initialState: CounterFeature.State()) { // provide an initial state for the store as well as the reducer that powers the feature
+        CounterFeature() // we can comment out this reducer 
     })
 }
