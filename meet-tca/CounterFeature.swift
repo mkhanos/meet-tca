@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import SwiftUI
 
 // Features are built using the Reducer() macro and Reducer protocol
 // They house business logic without any mention of a view
@@ -41,3 +42,26 @@ struct CounterFeature {
 }
 
 // later we will need to execute effects, feed data back into the system, manage dependencies, and multiple reducers
+
+// keep reducers and views in the same file until it's crazy
+struct CounterView: View {
+    let store: StoreOf<CounterFeature> // we make a store that's generic over our reducer that represents the runtime of our feature
+    
+    var body: some View {
+        VStack {
+            Text("\(store.count)") // access state via member look up
+            Button("-") {
+                store.send(.decrementButtonTapped) // send actions via the send method
+            }
+            Button("+") {
+                store.send(.incrementButtonTapped)
+            }
+        }
+    }
+}
+
+#Preview {
+    CounterView(store: .init(initialState: CounterFeature.State()) {
+        CounterFeature()
+    })
+}
