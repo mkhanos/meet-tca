@@ -14,9 +14,22 @@
 		FA62B8AF2DA70171008A348A /* meet-tca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "meet-tca.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FA62B8CA2DA95D9D008A348A /* Exceptions for "meet-tca" folder in "meet-tca" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FA62B8AE2DA70171008A348A /* meet-tca */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FA62B8B12DA70171008A348A /* meet-tca */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FA62B8CA2DA95D9D008A348A /* Exceptions for "meet-tca" folder in "meet-tca" target */,
+			);
 			path = "meet-tca";
 			sourceTree = "<group>";
 		};
@@ -259,6 +272,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"meet-tca/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "meet-tca/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -296,6 +310,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"meet-tca/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "meet-tca/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

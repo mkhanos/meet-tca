@@ -3,4 +3,114 @@
    uuid = "63ED8424-1382-4B3E-B550-51A000640D7A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ECF43CDC-8276-4570-877D-874B84533A16"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "meet-tca/CounterFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FD8C927F-3A07-4201-8D49-0DC9F33B92CC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "meet-tca/CounterFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "FD8C927F-3A07-4201-8D49-0DC9F33B92CC - 7fad4465ed3f3bf1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;meet_tca.CounterFeature.Action&gt;) async throws -&gt; () in closure #1 (inout meet_tca.CounterFeature.State, meet_tca.CounterFeature.Action) -&gt; ComposableArchitecture.Effect&lt;meet_tca.CounterFeature.Action&gt; in meet_tca.CounterFeature.body.getter : some"
+                  moduleName = "meet-tca.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/momo/Desktop/learning/meet-tca/meet-tca/CounterFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52">
+               </Location>
+               <Location
+                  uuid = "FD8C927F-3A07-4201-8D49-0DC9F33B92CC - edfb695ae00a85f0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;meet_tca.CounterFeature.Action&gt;) async throws -&gt; () in closure #1 (inout meet_tca.CounterFeature.State, meet_tca.CounterFeature.Action) -&gt; ComposableArchitecture.Effect&lt;meet_tca.CounterFeature.Action&gt; in meet_tca.CounterFeature.body.getter : some"
+                  moduleName = "meet-tca.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/momo/Desktop/learning/meet-tca/meet-tca/CounterFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52">
+               </Location>
+               <Location
+                  uuid = "FD8C927F-3A07-4201-8D49-0DC9F33B92CC - 5a30bdbf9be6e7f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;meet_tca.CounterFeature.Action&gt;) async throws -&gt; () in closure #1 (inout meet_tca.CounterFeature.State, meet_tca.CounterFeature.Action) -&gt; ComposableArchitecture.Effect&lt;meet_tca.CounterFeature.Action&gt; in meet_tca.CounterFeature.body.getter : some"
+                  moduleName = "meet-tca.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/momo/Desktop/learning/meet-tca/meet-tca/CounterFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ADCD8AAB-922B-4F16-AE83-7635008A1FEB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "meet-tca/CounterFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "07E1494B-4235-4C1F-B751-BF95DE9A18EB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "meet-tca/CounterFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
