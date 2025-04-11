@@ -33,6 +33,8 @@ struct CounterFeature {
     
     enum CancelID { case timer }
     
+    @Dependency(\.continuousClock) var clock
+    
     // typically we compose reducers together to form complex business logic
     // for simple features one reducer will be fine
     var body: some ReducerOf<Self> { // we must make a body property with a reducer
@@ -64,8 +66,7 @@ struct CounterFeature {
                 state.isTimerRunning.toggle()
                 if state.isTimerRunning {
                     return .run { send in
-                        while true {
-                            try await Task.sleep(for: .seconds(1))
+                        for _ await in self.clock.timer(interval: .seconds(1)) {
                             await send(.timerTick)
                         }
                     }
