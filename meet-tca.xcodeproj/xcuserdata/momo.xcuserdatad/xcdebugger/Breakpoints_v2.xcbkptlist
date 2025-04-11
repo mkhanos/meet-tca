@@ -34,6 +34,50 @@
             endingLineNumber = "57"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "FD8C927F-3A07-4201-8D49-0DC9F33B92CC - 7fad4465ed3f3b54"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;meet_tca.CounterFeature.Action&gt;) async throws -&gt; () in closure #1 (inout meet_tca.CounterFeature.State, meet_tca.CounterFeature.Action) -&gt; ComposableArchitecture.Effect&lt;meet_tca.CounterFeature.Action&gt; in meet_tca.CounterFeature.body.getter : some"
+                  moduleName = "meet-tca.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/momo/Desktop/learning/meet-tca/meet-tca/CounterFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57">
+               </Location>
+               <Location
+                  uuid = "FD8C927F-3A07-4201-8D49-0DC9F33B92CC - edfb695ae00a8555"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;meet_tca.CounterFeature.Action&gt;) async throws -&gt; () in closure #1 (inout meet_tca.CounterFeature.State, meet_tca.CounterFeature.Action) -&gt; ComposableArchitecture.Effect&lt;meet_tca.CounterFeature.Action&gt; in meet_tca.CounterFeature.body.getter : some"
+                  moduleName = "meet-tca.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/momo/Desktop/learning/meet-tca/meet-tca/CounterFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57">
+               </Location>
+               <Location
+                  uuid = "FD8C927F-3A07-4201-8D49-0DC9F33B92CC - 5a30bdbf9be6e756"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;meet_tca.CounterFeature.Action&gt;) async throws -&gt; () in closure #1 (inout meet_tca.CounterFeature.State, meet_tca.CounterFeature.Action) -&gt; ComposableArchitecture.Effect&lt;meet_tca.CounterFeature.Action&gt; in meet_tca.CounterFeature.body.getter : some"
+                  moduleName = "meet-tca.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/momo/Desktop/learning/meet-tca/meet-tca/CounterFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

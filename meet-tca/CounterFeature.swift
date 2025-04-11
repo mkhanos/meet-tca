@@ -15,7 +15,7 @@ import SwiftUI
 @Reducer
 struct CounterFeature {
     @ObservableState
-    struct State { // holds state
+    struct State: Equatable { // holds state
         var count = 0
         var isLoading = false
         var fact: String?
