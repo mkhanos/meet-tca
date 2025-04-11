@@ -31,6 +31,8 @@ struct CounterFeature {
         case timerTick
     }
     
+    enum CancelID { case timer }
+    
     // typically we compose reducers together to form complex business logic
     // for simple features one reducer will be fine
     var body: some ReducerOf<Self> { // we must make a body property with a reducer
@@ -60,12 +62,18 @@ struct CounterFeature {
                 return .none
             case .toggleTimerTapped:
                 state.isTimerRunning.toggle()
-                return .run { send in
-                    while true {
-                        try await Task.sleep(for: .seconds(1))
-                        await send(.timerTick)
+                if state.isTimerRunning {
+                    return .run { send in
+                        while true {
+                            try await Task.sleep(for: .seconds(1))
+                            await send(.timerTick)
+                        }
                     }
+                    .cancellable(id: CancelID.timer)
+                } else {
+                    return .cancel(id: CancelID.timer)
                 }
+
             case .timerTick:
                 state.count += 1
                 state.fact = nil
@@ -95,7 +103,7 @@ struct CounterView: View {
                     store.send(.factButtonTapped)
                 }
                 HStack {
-                    Button(store.isTimerRunning ? "Start Timer" : "Stop Timer") {
+                    Button(!store.isTimerRunning ? "Start Timer" : "Stop Timer") {
                         store.send(.toggleTimerTapped)
                     }
                 }
