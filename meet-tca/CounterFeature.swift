@@ -19,6 +19,7 @@ struct CounterFeature {
         var count = 0
         var isLoading = false
         var fact: String?
+        var isTimerRunning: Bool = false
     }
     
     enum Action { // all the actions a user can perform in the feature
@@ -26,6 +27,8 @@ struct CounterFeature {
         case decrementButtonTapped
         case factButtonTapped
         case factResponse(String) // our reducer responding to the fact being loaded
+        case toggleTimerTapped
+        case timerTick
     }
     
     // typically we compose reducers together to form complex business logic
@@ -55,6 +58,18 @@ struct CounterFeature {
                 state.fact = fact
                 state.isLoading = false
                 return .none
+            case .toggleTimerTapped:
+                state.isTimerRunning.toggle()
+                return .run { send in
+                    while true {
+                        try await Task.sleep(for: .seconds(1))
+                        await send(.timerTick)
+                    }
+                }
+            case .timerTick:
+                state.count += 1
+                state.fact = nil
+                return .none
             }
         }
     }
@@ -78,6 +93,11 @@ struct CounterView: View {
                 }
                 Button("Fact") {
                     store.send(.factButtonTapped)
+                }
+                HStack {
+                    Button(store.isTimerRunning ? "Start Timer" : "Stop Timer") {
+                        store.send(.toggleTimerTapped)
+                    }
                 }
             }
             if store.isLoading {
