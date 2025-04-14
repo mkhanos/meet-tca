@@ -52,7 +52,7 @@ struct CounferFeatureTests {
     }
     
     @Test
-    func testNetwork async {
+    func testNetwork() async {
         let store = TestStore(initialState: CounterFeature.State()) {
             CounterFeature()
         } withDependencies: {
@@ -65,7 +65,7 @@ struct CounferFeatureTests {
         
         await store.receive(\.factResponse) { // how do we test for the fact that we receive? we must control our dependency by abstracting it and then providing a hardcoded string
             $0.isLoading = false
-            $0.fact = "0 is a good number" // we use 0 is a good number because we haven't ticked it up
+            $0.fact = "0 is the meaning of life" // we use 0 is a good number because we haven't ticked it up
         }
     }
 }
