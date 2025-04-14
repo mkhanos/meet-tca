@@ -35,10 +35,8 @@ struct ContactsFeature {
                     contact: Contact(id: UUID(), name: "")
                 )
                 return .none
-            case .addContact:
-                return .none
-            // when the add contact feature is presented and the cancel button is tapped in the feature we dismiss the feature
-            // parent feature creates state to drive navigation
+                // when the add contact feature is presented and the cancel button is tapped in the feature we dismiss the feature
+                // parent feature creates state to drive navigation
             case .addContact(.presented(.cancelButtonTapped)):
                 state.addContact = nil
                 return .none
@@ -47,7 +45,9 @@ struct ContactsFeature {
                 state.contacts.append(contact)
                 state.addContact = nil
                 return .none
-                
+                // make sure to put this at the end
+            case .addContact:
+                return .none
             }
         }
         .ifLet(\.$addContact, action: \.addContact) { // runs the child reducer when a child action comes in
@@ -57,7 +57,7 @@ struct ContactsFeature {
 }
 
 struct ContactsView: View {
-    let store: StoreOf<ContactsFeature>
+    @Bindable var store: StoreOf<ContactsFeature>
     var body: some View {
         NavigationStack {
             List {
@@ -74,6 +74,13 @@ struct ContactsView: View {
                         Image(systemName: "plus")
                     }
                 }
+            }
+        }
+        .sheet(
+            item: $store.scope(state: \.addContact, action: \.addContact)
+        ) { addContactStore in
+            NavigationStack {
+                AddContactView(store: addContactStore)
             }
         }
     }
