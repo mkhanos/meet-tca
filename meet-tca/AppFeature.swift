@@ -41,15 +41,14 @@ struct AppFeature {
 struct AppView: View {
     // have isolated stores is not ideal if we want them to have the ability to communicate w/ each other
     // we should compose features together and power them with a single store
-    let store1: StoreOf<CounterFeature>
-    let store2: StoreOf<CounterFeature>
+    let store: StoreOf<AppFeature>
     var body: some View {
         TabView {
-            CounterView(store: store1)
+            CounterView(store: store.scope(state: \.tab1, action: \.tab1))
                 .tabItem {
                     Text("Counter 1")
                 }
-            CounterView(store: store2)
+            CounterView(store: store.scope(state: \.tab2, action: \.tab2))
                 .tabItem {
                     Text("Counter 2")
                 }
