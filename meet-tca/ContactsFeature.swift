@@ -17,19 +17,41 @@ struct Contact: Identifiable, Equatable {
 struct ContactsFeature {
     @ObservableState
     struct State: Equatable {
+        @Presents var addContact: AddContactFeature.State? // integrates states together, nil means not presented, non-nil means presented
         var contacts: IdentifiedArrayOf<Contact> = []
     }
     
     enum Action {
         case addButtonTapped
+        case addContact(PresentationAction<AddContactFeature.Action>) // integrates actions together
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .addButtonTapped:
+                // present the feature with the initial state
+                state.addContact = AddContactFeature.State(
+                    contact: Contact(id: UUID(), name: "")
+                )
                 return .none
+            case .addContact:
+                return .none
+            // when the add contact feature is presented and the cancel button is tapped in the feature we dismiss the feature
+            // parent feature creates state to drive navigation
+            case .addContact(.presented(.cancelButtonTapped)):
+                state.addContact = nil
+                return .none
+            case .addContact(.presented(.saveButtonTapped)):
+                guard let contact = state.addContact?.contact else { return .none }
+                state.contacts.append(contact)
+                state.addContact = nil
+                return .none
+                
             }
+        }
+        .ifLet(\.$addContact, action: \.addContact) { // runs the child reducer when a child action comes in
+            AddContactFeature()
         }
     }
 }
