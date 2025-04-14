@@ -34,6 +34,7 @@ struct CounterFeature {
     enum CancelID { case timer }
     
     @Dependency(\.continuousClock) var clock
+    @Dependency(\.numberFact) var numberFact
     
     // typically we compose reducers together to form complex business logic
     // for simple features one reducer will be fine
@@ -53,10 +54,7 @@ struct CounterFeature {
                 state.isLoading = true
                 // we cannot do asyncrhonous work in the reducer, only state mutations
                 return .run { [count = state.count] send in
-                    let (data, _) = try await URLSession.shared
-                        .data(from: URL(string: "http://numbersapi.com/\(count)")!)
-                    let fact = String(decoding: data, as: UTF8.self)
-                    await send(.factResponse(fact))
+                    try await send(.factResponse(self.numberFact.fetch(count)))
                 }
             case let .factResponse(fact):
                 state.fact = fact
@@ -66,7 +64,7 @@ struct CounterFeature {
                 state.isTimerRunning.toggle()
                 if state.isTimerRunning {
                     return .run { send in
-                        for _ await in self.clock.timer(interval: .seconds(1)) {
+                        for await _ in self.clock.timer(interval: .seconds(1)) {
                             await send(.timerTick)
                         }
                     }
