@@ -37,7 +37,7 @@ struct CounferFeatureTests {
         }
         
         // this test passes but it doesnt assert anything on the actual test itself
-        await store.send(.timerButtonTapped) { // only this would fail because we still have effects running
+        await store.send(.toggleTimerTapped) { // only this would fail because we still have effects running
             $0.isTimerRunning = true
         }
         await clock.advance(by: .seconds(1))
@@ -46,8 +46,26 @@ struct CounferFeatureTests {
         await store.receive(\.timerTick) { // we expect to receive the timer tick action and the count goes up by one on the first one
             $0.count = 1
         }
-        await store.send(.timerButtonTapped) {
+        await store.send(.toggleTimerTapped) {
             $0.isTimerRunning = false
+        }
+    }
+    
+    @Test
+    func testNetwork async {
+        let store = TestStore(initialState: CounterFeature.State()) {
+            CounterFeature()
+        } withDependencies: {
+            $0.numberFact.fetch = { "\($0) is the meaning of life" }
+        }
+        
+        await store.send(.factButtonTapped) { // only checking this without the network fails bc we need to assert on all effects
+            $0.isLoading = true
+        }
+        
+        await store.receive(\.factResponse) { // how do we test for the fact that we receive? we must control our dependency by abstracting it and then providing a hardcoded string
+            $0.isLoading = false
+            $0.fact = "0 is a good number" // we use 0 is a good number because we haven't ticked it up
         }
     }
 }
