@@ -67,6 +67,8 @@ struct ContactsView: View {
                     Contact(id: UUID(), name: "Blob Sr"),
                 ]
             )
-        )
+        ) {
+            ContactsFeature()
+        }
     )
 }
