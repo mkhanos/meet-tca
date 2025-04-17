@@ -12,7 +12,7 @@ import Testing
 @testable import meet_tca
 
 struct ContactFeatureTests {
-
+    
     @Test
     func addFlow() async {
         // Write your test here and use APIs like `#expect(...)` to check expected conditions.
@@ -29,6 +29,25 @@ struct ContactFeatureTests {
                 )
             )
         }
+        
+        await store.send(\.destination.addContact.setName, "Blob Jr") {
+            $0.destination?.modify(\.addContact) { $0.contact.name = "Blob Jr" }
+        }
+        
+        await store.send(\.destination.addContact.saveButtonTapped)
+        
+        await store.receive(
+            \.destination.addContact.delegate.saveContact,
+             Contact(id: UUID(0), name: "Blob Jr")
+        ) {
+            $0.contacts = [
+                Contact(id: UUID(0), name: "Blob Jr")
+            ]
+        }
+        
+        await store.receive(\.destination.dismiss) {
+            $0.destination = nil
+        }
     }
-
+    
 }
