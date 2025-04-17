@@ -30,6 +30,7 @@ struct ContactsFeature {
         }
     }
     
+    @Dependency(\.uuid) var uuid
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
@@ -37,7 +38,7 @@ struct ContactsFeature {
                 // present the feature with the initial state
                 state.destination = .addContact(
                     AddContactFeature.State(
-                        contact: Contact(id: UUID(), name: "")
+                        contact: Contact(id: self.uuid(), name: "")
                     )
                 )
                 
