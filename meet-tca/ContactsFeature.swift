@@ -17,13 +17,17 @@ struct Contact: Identifiable, Equatable {
 struct ContactsFeature {
     @ObservableState
     struct State: Equatable {
-        @Presents var addContact: AddContactFeature.State? // integrates states together, nil means not presented, non-nil means presented
+        @Presents var destination: Destination.State?
         var contacts: IdentifiedArrayOf<Contact> = []
     }
     
     enum Action {
         case addButtonTapped
-        case addContact(PresentationAction<AddContactFeature.Action>) // integrates actions together
+        case destination(PresentationAction<Destination.Action>)
+        case deleteButtonTapped(id: Contact.ID)
+        enum Alert: Equatable {
+            case confirmDeletion(id: Contact.ID)
+        }
     }
     
     var body: some ReducerOf<Self> {
@@ -31,25 +35,49 @@ struct ContactsFeature {
             switch action {
             case .addButtonTapped:
                 // present the feature with the initial state
-                state.addContact = AddContactFeature.State(
-                    contact: Contact(id: UUID(), name: "")
+                state.destination = .addContact(
+                    AddContactFeature.State(
+                        contact: Contact(id: UUID(), name: "")
+                    )
                 )
+                
                 return .none
                 // when the add contact feature is presented and the cancel button is tapped in the feature we dismiss the feature
                 // parent feature creates state to drive navigation
-            case let .addContact(.presented(.delegate(.saveContact(contact)))):
+            case let .destination(.presented(.addContact(.delegate(.saveContact(contact))))):
                 state.contacts.append(contact)
                 return .none
-                // make sure to put this at the end
-            case .addContact:
+            case let .destination(.presented(.alert(.confirmDeletion(id: id)))):
+                state.contacts.remove(id: id)
+                return .none
+            case .destination:
+                return .none
+            case let .deleteButtonTapped(id: id):
+                state.destination = .alert(
+                    AlertState{
+                        TextState("Are you sure?")
+                    } actions: {
+                        ButtonState(role: .destructive, action: .confirmDeletion(id: id)) {
+                            TextState("Confirm")
+                        }
+                    }
+                )
                 return .none
             }
         }
-        .ifLet(\.$addContact, action: \.addContact) { // runs the child reducer when a child action comes in
-            AddContactFeature()
-        }
+        .ifLet(\.$destination, action: \.destination)
     }
 }
+
+extension ContactsFeature {
+    @Reducer
+    enum Destination {
+        case addContact(AddContactFeature)
+        case alert(AlertState<ContactsFeature.Action.Alert>)
+    }
+}
+
+extension ContactsFeature.Destination.State: Equatable {}
 
 struct ContactsView: View {
     @Bindable var store: StoreOf<ContactsFeature>
@@ -57,7 +85,16 @@ struct ContactsView: View {
         NavigationStack {
             List {
                 ForEach(store.contacts) { contact in
-                    Text(contact.name)
+                    HStack {
+                        Text(contact.name)
+                        Spacer()
+                        Button {
+                            store.send(.deleteButtonTapped(id: contact.id))
+                        } label: {
+                            Image(systemName: "trash")
+                                .foregroundColor(.red)
+                        }
+                    }
                 }
             }
             .navigationTitle("Contacts")
@@ -72,12 +109,13 @@ struct ContactsView: View {
             }
         }
         .sheet(
-            item: $store.scope(state: \.addContact, action: \.addContact)
+            item: $store.scope(state: \.destination?.addContact, action: \.destination.addContact)
         ) { addContactStore in
             NavigationStack {
                 AddContactView(store: addContactStore)
             }
         }
+        .alert($store.scope(state: \.destination?.alert, action: \.destination.alert))
     }
 }
 
