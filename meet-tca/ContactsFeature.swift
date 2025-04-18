@@ -105,9 +105,10 @@ struct ContactsView: View {
                                 Image(systemName: "trash")
                                     .foregroundColor(.red)
                             }
+                            .buttonStyle(.borderless)
                         }
                     }
-                    .buttonStyle(.borderless)
+                    
                 }
             }
             .navigationTitle("Contacts")
