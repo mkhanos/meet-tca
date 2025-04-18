@@ -8,11 +8,6 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct Contact: Identifiable, Equatable {
-    let id: UUID
-    var name: String
-}
-
 @Reducer
 struct ContactsFeature {
     @ObservableState
